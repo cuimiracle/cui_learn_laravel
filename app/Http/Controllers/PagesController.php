@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -7,24 +7,16 @@ use Illuminate\Http\Request;
 
 use App\Page;
 
-use Illuminate\Support\Facades\Config;
-
-class TestController extends Controller {
+class PagesController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
-	 * @accessUrl http://localhost/learnlaravel5/public/admin
 	 * @return Response
 	 */
 	public function index()
-	{	
-		// echo Config::get('app.debug');
-		$data = array();
-		$data['pages'] = Page::all();
-
-		return view('admin.test', $data);
-		// withPages(Page::all());
+	{
+		//
 	}
 
 	/**
@@ -55,7 +47,7 @@ class TestController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		return view('pages.show')->withPage(Page::find($id));
 	}
 
 	/**
