@@ -16,9 +16,11 @@ class TestController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
+	{	
+
 		$data = array();
 		$data['pages'] = Page::all();
+
 		return view('admin.test', $data);
 		// withPages(Page::all());
 	}
