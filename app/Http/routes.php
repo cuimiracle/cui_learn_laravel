@@ -27,6 +27,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 {
 	Route::get('/', 'TestController@index');
 	Route::resource('pages', 'PagesController');
+	Route::resource('comments', 'CommentsController');
 });
 
 Route::get('pages/{id}', 'PagesController@show');
+
+Route::post('comment/store', 'CommentsController@store');

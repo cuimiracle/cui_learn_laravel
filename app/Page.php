@@ -9,4 +9,9 @@ class Page extends Model {
 		return $this->belongsTo('User', 'user_id', 'id');
 	}
 
+	public function hasManyComments()
+	{
+		return $this->hasMany('App\Comment', 'page_id', 'id');
+	}
+
 }
