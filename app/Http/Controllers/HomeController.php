@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Page;
+use App\Repositories\Pages\PageRepositoryInterface;
 
 class HomeController extends Controller {
 
@@ -20,9 +21,10 @@ class HomeController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(PageRepositoryInterface $repository)
 	{
 		$this->middleware('auth');
+		$this->pages = $repository;
 	}
 
 	/**
@@ -32,7 +34,10 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home')->withPages(Page::all());
+		$id = 1;
+		$post = $this->pages->find($id);
+		echo "<pre>";print_r($post);echo "</pre>";
+		// return view('home')->withPages(Page::all());
 	}
 
 }
