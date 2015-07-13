@@ -26,8 +26,8 @@ class RepositoryServiceProvider extends ServiceProvider {
 
 	private function registerPostRepository()
 	{
-		// $repository = 'App\Repositories\Pages\EloquentPageRepository';
- 		$repository = 'App\Repositories\Pages\RedisPageRepository';
+		$repository = 'App\Repositories\Pages\EloquentPageRepository';
+// 		$repository = 'App\Repositories\Pages\RedisPageRepository';
 		$this->app->bind('App\Repositories\Pages\PageRepositoryInterface', $repository);
 	}
 }

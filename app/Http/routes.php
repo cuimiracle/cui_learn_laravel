@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::post('home/storePhoto', 'HomeController@storePhoto');
+//Route::get('/', 'HomeController@index', ['middleware' => 'auth']);
 
 // Route::controllers([
 // 	'auth' => 'Auth\AuthController',
@@ -33,3 +35,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 Route::get('pages/{id}', 'PagesController@show');
 
 Route::post('comment/store', 'CommentsController@store');
+
+//Route::match(['get', 'post'], '/', function()
+//{
+//    return 'Hello World';
+//});
+
+//Route::any('foo', function()
+//{
+//    return 'Hello World';
+//});

@@ -22,4 +22,11 @@
 			@endforeach
 		</ul>
 	</div>
+
+    <form action="{{ URL('home/storePhoto') }}" enctype="multipart/form-data" method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="file" name="photo" value="">
+        <input type="submit" name="upload_photo" value="Upload Photo">
+    </form>
+
 @endsection
