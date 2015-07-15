@@ -35,4 +35,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
     	return $this->hasMany('App\Page', 'user_id', 'id');
     }
+
+    public function scopeOfName($query, $name)
+    {
+        return $query->whereName($name);
+    }
+
 }

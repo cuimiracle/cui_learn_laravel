@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::get('/welcome', 'WelcomeController@index');
 Route::get('/', 'HomeController@index');
 Route::post('home/storePhoto', 'HomeController@storePhoto');
 //Route::get('/', 'HomeController@index', ['middleware' => 'auth']);

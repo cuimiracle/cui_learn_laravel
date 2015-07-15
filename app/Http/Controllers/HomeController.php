@@ -1,10 +1,13 @@
 <?php namespace App\Http\Controllers;
 
+use App\Component\Birds\FlyBird;
+use App\User;
 use App\Page;
 use App\Repositories\Pages\PageRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Component\MyClass;
+use App\Component\Birds;
 
 class HomeController extends Controller {
 
@@ -37,8 +40,10 @@ class HomeController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-
-        echo MyClass::display();
+        $FlyBird = new Birds\FlyBird();
+        echo $FlyBird->fly();
+//        echo $users = User::ofName('emily')->get();
+//        echo MyClass::display();
 //        $name = $request->input('name');
 //        echo "<pre>";print_r($name);echo "</pre>";
 //        $results = DB::select('select * from pages where id = :id', ['id' => 1]);
@@ -46,7 +51,7 @@ class HomeController extends Controller {
 //        $id = 1;
 //        $post = $this->pages->find($id);
 //        echo "<pre>";print_r($post);echo "</pre>";exit;
-        return view('home')->withPages(Page::all());
+//        return view('home')->withPages(Page::all());
 	}
 
     public function storePhoto(Request $request)

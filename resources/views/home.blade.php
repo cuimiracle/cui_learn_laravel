@@ -9,6 +9,7 @@
 	<div id="content">
 		<ul>
 			@foreach ($pages as $page)
+                <?php echo "<pre>";print_r($page['attributes']);echo "</pre>"; ?>
 			<li style="margin: 50px 0;">
 				<div class="title">
 					<a href="{{ URL('pages/'.$page->id) }}">
