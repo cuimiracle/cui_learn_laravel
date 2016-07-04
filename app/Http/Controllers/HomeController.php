@@ -41,7 +41,7 @@ class HomeController extends Controller {
 	public function index(Request $request)
 	{
         $FlyBird = new Birds\FlyBird();
-        echo $FlyBird->fly();
+        echo $FlyBird->fly();exit;
 //        echo $users = User::ofName('emily')->get();
 //        echo MyClass::display();
 //        $name = $request->input('name');

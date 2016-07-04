@@ -11,9 +11,9 @@
 |
 */
 Route::get('/welcome', 'WelcomeController@index');
-Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
 Route::post('home/storePhoto', 'HomeController@storePhoto');
-//Route::get('/', 'HomeController@index', ['middleware' => 'auth']);
+Route::get('/', 'HomeController@index', ['middleware' => 'auth']);
 
 // Route::controllers([
 // 	'auth' => 'Auth\AuthController',
@@ -23,7 +23,8 @@ Route::post('home/storePhoto', 'HomeController@storePhoto');
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function()
 {
