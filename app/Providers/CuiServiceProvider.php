@@ -25,7 +25,7 @@ class CuiServiceProvider extends ServiceProvider {
 	}
 
     function registerBirdComponent(){
-//        $repository = 'App\Repositories\Pages\EloquentPageRepository';
-//        $this->app->bind('App\Repositories\Pages\PageRepositoryInterface', $repository);
+        $repository = 'App\Repositories\Pages\EloquentPageRepository';
+        $this->app->bind('App\Repositories\Pages\PageRepositoryInterface', $repository);
     }
 }

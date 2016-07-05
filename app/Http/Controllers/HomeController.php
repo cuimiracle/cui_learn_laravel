@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Component\MyClass;
 use App\Component\Birds;
+use App\Commands\PurchasePodcast;
 
 class HomeController extends Controller {
+    public $pages;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -40,8 +42,18 @@ class HomeController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-        $FlyBird = new Birds\FlyBird();
-        echo $FlyBird->fly();exit;
+        $rets = $this->pages->find(1);//->get()
+        $user = User::find(1);
+        //echo '<pre>';print_r($user);echo '</pre>';
+        /*
+        if(!empty($rets)){
+            foreach($rets as $ret){
+                echo "<pre>";print_r($ret->id);echo "</pre>";
+            }
+        }*/
+        $this->dispatch(new PurchasePodcast($user, $rets));
+//        $FlyBird = new Birds\FlyBird();
+//        echo $FlyBird->fly();exit;
 //        echo $users = User::ofName('emily')->get();
 //        echo MyClass::display();
 //        $name = $request->input('name');
