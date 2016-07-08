@@ -10,6 +10,7 @@ use App\Component\MyClass;
 use App\Component\Birds;
 use App\Commands\PurchasePodcast;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller {
     public $pages;
@@ -43,8 +44,29 @@ class HomeController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-        $page = $this->pages->find(1);//->get()
-        $user = User::find(1);
+        $redis = Redis::connection();
+        $redis->set('name', 'Taylor');
+        $name = $redis->get('name');
+        echo '<pre>';print_r($name);echo '</pre>';exit;
+
+        Redis::pipeline(function($pipe)
+        {
+            for ($i = 0; $i < 1000; $i++)
+            {
+                $pipe->set("key:$i", $i);
+            }
+        });
+        $redisArr = array();
+        Redis::pipeline(function($pipe)
+        {
+            for ($i = 0; $i < 1000; $i++)
+            {
+                $redisArr[] = $pipe->get("key:$i");
+            }
+        });
+
+//        $page = $this->pages->find(1);//->get()
+//        $user = User::find(1);
         //echo '<pre>';print_r($user);echo '</pre>';
         /*
         if(!empty($rets)){
@@ -52,7 +74,7 @@ class HomeController extends Controller {
                 echo "<pre>";print_r($ret->id);echo "</pre>";
             }
         }*/
-        Queue::push(new PurchasePodcast($user, $page));
+       // Queue::push(new PurchasePodcast($user, $page));
         //$this->dispatch(new PurchasePodcast($user, $page));
 //        $FlyBird = new Birds\FlyBird();
 //        echo $FlyBird->fly();exit;
